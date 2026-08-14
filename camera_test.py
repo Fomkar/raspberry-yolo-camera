@@ -26,6 +26,7 @@ fps = 0
 while True:
 
     frame = picam2.capture_array()
+    frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
 
     current_time = time.time()
     fps = 1 / (current_time - prev_time)
