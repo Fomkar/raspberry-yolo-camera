@@ -6,7 +6,7 @@ picam2 = Picamera2()
 
 config = picam2.create_preview_configuration(
     main={
-        "size": (1280, 720),
+        "size": (640, 480),
         "format": "BGR888"
     },
     buffer_count=2
@@ -28,9 +28,7 @@ while True:
     frame = picam2.capture_array()
 
     current_time = time.time()
-
     fps = 1 / (current_time - prev_time)
-
     prev_time = current_time
 
     cv2.putText(
@@ -43,10 +41,7 @@ while True:
         2
     )
 
-    cv2.imshow(
-        "OV5647 Camera",
-        frame
-    )
+    cv2.imshow("OV5647 Camera", frame)
 
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break
