@@ -6,8 +6,8 @@ picam2 = Picamera2()
 
 config = picam2.create_preview_configuration(
     main={
-        "size": (1270, 720),
-        "format": "RGB888"
+        "size": (1280, 720),
+        "format": "BGR888"
     },
     buffer_count=2
 )
@@ -27,13 +27,6 @@ while True:
 
     frame = picam2.capture_array()
 
-    # RGB -> BGR
-    frame = cv2.cvtColor(
-        frame,
-        cv2.COLOR_RGB2BGR
-    )
-
-    # FPS hesapla
     current_time = time.time()
 
     fps = 1 / (current_time - prev_time)
@@ -60,5 +53,3 @@ while True:
 
 picam2.stop()
 cv2.destroyAllWindows()
-
-print("Kamera kapatildi.")
